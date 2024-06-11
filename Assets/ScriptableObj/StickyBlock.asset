@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf8cb61c70f0704aa32afd1c1cba2da, type: 3}
   m_Name: StickyBlock
   m_EditorClassIdentifier: 
-  title: Circle
-  description: A basic circle  give 1 emo
-  cost: 4
-  prefab: {fileID: 5994708122328820825, guid: 9bae38df8c40e634186ff4705cbb3db7, type: 3}
+  title: StickyBlock
+  description: Stick any ball that touches it. Whenever there are three balls on
+    in, destroy them and permently add 1 emo when being hit
+  cost: 6
+  prefab: {fileID: 6308702605827456589, guid: 61ebf28687c384b3eb838ff24649920d, type: 3}
