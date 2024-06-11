@@ -32,6 +32,14 @@ public class nearRule : MonoBehaviour
         
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "near")
+        {
+            manger.noNearBlock = true;
+            spriteRenderer.enabled = true;
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "near")
