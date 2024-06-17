@@ -46,6 +46,12 @@ public class ShopManger : MonoBehaviour
         }
     }
 
+    public void refreshCoin()
+    {
+        coinUI.text = "Coins: " + coins.ToString();
+        CheckPurchaseable();
+    }
+
     public void AddCoins(int mount)
     {
         coins += mount;
