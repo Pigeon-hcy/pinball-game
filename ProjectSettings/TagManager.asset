@@ -9,6 +9,7 @@ TagManager:
   - PhaseManger
   - Thrower
   - near
+  - shopManger
   layers:
   - Default
   - TransparentFX
