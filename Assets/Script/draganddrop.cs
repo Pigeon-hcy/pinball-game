@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class draganddrop : MonoBehaviour
@@ -7,7 +8,7 @@ public class draganddrop : MonoBehaviour
     private Vector3 dragoffset;
     private Camera cam;
     public PhaseManger phaseManger;
-
+    public bool canSell;
     private void Awake()
     {
         phaseManger = GameObject.FindGameObjectWithTag("PhaseManger").GetComponent<PhaseManger>();
@@ -19,6 +20,7 @@ public class draganddrop : MonoBehaviour
         if (phaseManger.canDrag == true)
         {
             dragoffset = transform.position - GetMousePos();
+            
         }
         
     }
@@ -28,9 +30,20 @@ public class draganddrop : MonoBehaviour
         if (phaseManger.canDrag == true)
         {
             transform.position = GetMousePos() + dragoffset;
+            canSell = false;
         }
     }
 
+    private void OnMouseUp()
+    {
+        if (phaseManger.canDrag == true)
+        {
+            
+            canSell = true;
+        }
+    }
+
+    
     Vector3 GetMousePos()
     {
 
