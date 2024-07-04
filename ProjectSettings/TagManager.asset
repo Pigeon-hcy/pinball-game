@@ -12,6 +12,8 @@ TagManager:
   - shopManger
   - item
   - Sell
+  - Cover
+  - +1
   layers:
   - Default
   - TransparentFX
