@@ -13,6 +13,8 @@ public class ScorePit : MonoBehaviour, IInteractable
     public int Level;
     public int Cost;
     public bool canInteract => throw new System.NotImplementedException();
+    public GameObject MParticle;
+    public GameObject EParticle;
 
     private void Awake()
     {
@@ -22,8 +24,8 @@ public class ScorePit : MonoBehaviour, IInteractable
 
     public void InteractWith()
     {
-        GameManger.Emotion += Emo;
-        GameManger.Score += Score;
+        StartCoroutine(AddEmo());
+        StartCoroutine(AddScore());
 
     }
 
@@ -56,9 +58,27 @@ public class ScorePit : MonoBehaviour, IInteractable
             return;
         }
     }
-    //public void Update()
-    //{
-        
 
-    //}
+
+    IEnumerator AddEmo()
+    {
+        for (int i = 0; i < Emo; i++)
+        {
+            Instantiate(EParticle, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(1);
+        GameManger.Emotion += Emo;
+    }
+
+    IEnumerator AddScore()
+    {
+        for (int i = 0; i < Score; i++)
+        {
+            Instantiate(MParticle, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(1);
+        GameManger.Score += Score;
+    }
 }

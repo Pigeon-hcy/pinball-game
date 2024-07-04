@@ -9,7 +9,9 @@ public class GameManger : MonoBehaviour
     public int Emotion;
     public int startEmotion;
     public int Score;
-    public TMP_Text Text;
+    public TMP_Text goalText;
+    public TMP_Text EmoText;
+    public TMP_Text turnText;
     public int goal;
     public int tryTime;
     public int tryTimeMax;
@@ -27,7 +29,10 @@ public class GameManger : MonoBehaviour
 
     private void Update()
     {
-        Text.text = "Emotion:" + Emotion + "<br>Score:" + Score +"/" + goal + "<br>TimeRemain:" + tryTime;
+        goalText.text = Score + "/" + goal;
+        EmoText.text = Emotion.ToString();
+        turnText.text = tryTime.ToString();
+
         ballList = GameObject.FindGameObjectsWithTag("Ball");
 
         if (ballList.Length == 0)
