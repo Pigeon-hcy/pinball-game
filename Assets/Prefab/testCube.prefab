@@ -217,7 +217,7 @@ MonoBehaviour:
   Mode: 0
   TimeScale: 0
   AnimateScaleTarget: {fileID: 0}
-  AnimateScaleDuration: 0.2
+  AnimateScaleDuration: 0.3
   RemapCurveZero: 1
   RemapCurveOne: 2
   Offset: 0
@@ -493,7 +493,7 @@ MonoBehaviour:
         DebugActive: 0
         Mode: 0
         AnimateScaleTarget: {fileID: 2269743112098634747}
-        AnimateScaleDuration: 0.2
+        AnimateScaleDuration: 0.3
         RemapCurveZero: 2
         RemapCurveOne: 2.5
         Offset: 0
@@ -934,6 +934,10 @@ MonoBehaviour:
   GameManger: {fileID: 0}
   AudioSource: {fileID: 7035900683930973941}
   OnHitFeedBack: {fileID: 4644637657118599464}
+  cooldown: 10
+  cooldownRemaining: 10
+  canIntercat: 1
+  EParticle: {fileID: 7163979553524316108, guid: 5b2c08518238019448bbb2dcd26659bb, type: 3}
 --- !u!114 &1562763249076855500
 MonoBehaviour:
   m_ObjectHideFlags: 0
