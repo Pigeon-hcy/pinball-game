@@ -15818,10 +15818,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 45
       objectReference: {fileID: 0}
-    - target: {fileID: 4644637657118599464, guid: acb0e883b3af15f40942c1bd23f4bd70, type: 3}
-      propertyPath: managedReferences[8133438429848403970].AnimateScaleDuration
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 7600226639775509198, guid: acb0e883b3af15f40942c1bd23f4bd70, type: 3}
       propertyPath: m_Name
       value: EmotionBlock
