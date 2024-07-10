@@ -13,7 +13,7 @@ public class Cube : MonoBehaviour, IInteractable
     public int cooldown = 10;
     public int cooldownRemaining;
     public bool canIntercat;
-    public GameObject EParticle;
+    public GameObject MParticle;
     private void Awake()
     {
         GameManger = GameObject.FindGameObjectWithTag("GameManger").GetComponent<GameManger>();
@@ -51,12 +51,12 @@ public class Cube : MonoBehaviour, IInteractable
 
     IEnumerator AddEmo()
     {
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 3; i++)
         {
-            Instantiate(EParticle, transform.position, Quaternion.identity);
+            Instantiate(MParticle, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(0.1f);
         }
         yield return new WaitForSeconds(1);
-        GameManger.Emotion += 1;
+        GameManger.Score += 3;
     }
 }
