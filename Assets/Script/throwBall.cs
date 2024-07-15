@@ -59,10 +59,9 @@ public class throwBall : MonoBehaviour
         GameManger.tryTime--;
         for (int i = 0; i < Emotion; i++)
         {
-            Debug.Log("i =" + i);
-            yield return new WaitForSeconds(1);
             Instantiate(ball, transform.position, Quaternion.identity);
-            
+            yield return new WaitForSeconds(1);
+
         }
         throwDone = true;
         
