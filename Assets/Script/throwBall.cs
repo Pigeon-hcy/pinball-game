@@ -15,6 +15,11 @@ public class throwBall : MonoBehaviour
     public int startingPoint;
     public Transform[] points;
     private int i;
+
+    public delegate void TurnEndAction();
+    public static TurnEndAction OnTurnEnd;
+
+
     private void Awake()
     {
         PhaseManger = GameObject.FindGameObjectWithTag("PhaseManger").GetComponent<PhaseManger>();
@@ -54,6 +59,7 @@ public class throwBall : MonoBehaviour
 
     IEnumerator throwNumberBall(int Emotion)
     {
+        
         throwDone = false;
         PhaseManger.changePhase(2);
         GameManger.tryTime--;
@@ -63,6 +69,11 @@ public class throwBall : MonoBehaviour
             yield return new WaitForSeconds(1);
 
         }
+        if (OnTurnEnd != null)
+        {
+            OnTurnEnd();
+        }
+        
         throwDone = true;
         
     }
