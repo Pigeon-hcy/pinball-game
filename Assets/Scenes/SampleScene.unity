@@ -452,8 +452,6 @@ GameObject:
   m_Component:
   - component: {fileID: 69448492}
   - component: {fileID: 69448493}
-  - component: {fileID: 69448496}
-  - component: {fileID: 69448495}
   - component: {fileID: 69448494}
   m_Layer: 0
   m_Name: SmallCover
@@ -544,78 +542,6 @@ MonoBehaviour:
   ParticleSystem: {fileID: 1114138557}
   Monly: 0
   Eonly: 0
---- !u!50 &69448495
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69448491}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &69448496
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69448491}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &191505174 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7846133495112858405, guid: f22f9e5c7e89614419c7dcece96e1d64, type: 3}
@@ -4594,7 +4520,7 @@ GameObject:
   - component: {fileID: 1114138556}
   m_Layer: 0
   m_Name: EParticle
-  m_TagString: Untagged
+  m_TagString: EP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9966,7 +9892,7 @@ GameObject:
   - component: {fileID: 1334787952}
   m_Layer: 0
   m_Name: MParticle
-  m_TagString: Untagged
+  m_TagString: MP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15099,6 +15025,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a6d609a7edd868e49bbc8ce7b1f34b84, type: 2}
   - {fileID: 11400000, guid: 57e54976f8cda49c49d10ee1d58c95b5, type: 2}
   - {fileID: 11400000, guid: 52cc0449a1bea7d42b55e9d0e9c5ea92, type: 2}
+  - {fileID: 11400000, guid: d7828db5ef76e8e46ac05bc744ebe6f8, type: 2}
   shopPannels:
   - {fileID: 1772015658}
   - {fileID: 363484364}
@@ -15319,8 +15246,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1478155107}
   - component: {fileID: 1478155108}
-  - component: {fileID: 1478155111}
-  - component: {fileID: 1478155110}
   - component: {fileID: 1478155109}
   m_Layer: 0
   m_Name: BigCover
@@ -15411,78 +15336,6 @@ MonoBehaviour:
   ParticleSystem: {fileID: 1334787953}
   Monly: 0
   Eonly: 0
---- !u!50 &1478155110
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478155106}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &1478155111
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478155106}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1512133705
 GameObject:
   m_ObjectHideFlags: 0
@@ -17256,11 +17109,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5504543149378537225, guid: 803dd2d52741eb5499d6b4d1caf66d41, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.36
+      value: 6.61
       objectReference: {fileID: 0}
     - target: {fileID: 5504543149378537225, guid: 803dd2d52741eb5499d6b4d1caf66d41, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.18
+      value: 7.62
       objectReference: {fileID: 0}
     - target: {fileID: 5504543149378537225, guid: 803dd2d52741eb5499d6b4d1caf66d41, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17450,11 +17303,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1421250873232615605, guid: 51f480a8a81ff1140916ade6bc72162c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.44
+      value: 11.6
       objectReference: {fileID: 0}
     - target: {fileID: 1421250873232615605, guid: 51f480a8a81ff1140916ade6bc72162c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: -1.56
       objectReference: {fileID: 0}
     - target: {fileID: 1421250873232615605, guid: 51f480a8a81ff1140916ade6bc72162c, type: 3}
       propertyPath: m_LocalPosition.z

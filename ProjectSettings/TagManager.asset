@@ -13,9 +13,8 @@ TagManager:
   - item
   - Sell
   - Cover
-  - +1
-  - M+1
-  - S+1
+  - MP
+  - EP
   layers:
   - Default
   - TransparentFX
@@ -23,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ball
   - 
   - 
   - 

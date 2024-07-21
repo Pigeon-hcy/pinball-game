@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,10 @@ public class BallEater : MonoBehaviour, IInteractable
     public GameObject ball;
     public GameObject pointA;
     public GameObject pointB;
+    public MMF_Player OnHitFeedBack;
     public void InteractWith()
     {
-        Debug.Log("spawn!");
+        OnHitFeedBack.PlayFeedbacks();
         Instantiate(ball, pointA.transform.position, Quaternion.identity);
         Instantiate(ball, pointB.transform.position, Quaternion.identity);
     }
