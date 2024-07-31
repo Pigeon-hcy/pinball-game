@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aaf8cb61c70f0704aa32afd1c1cba2da, type: 3}
-  m_Name: BlackHole
+  m_Name: GoldPot
   m_EditorClassIdentifier: 
-  title: BlackHole
-  description: Attract nearby balls, after eating a ball EMO +2
+  title: GoldPost
+  description: After eatting 2 balls, give you a gold ball. When gold ball touches
+    bounciable things +4 score
   cost: 4
-  prefab: {fileID: 1420554946172663494, guid: 31dbbeb00bc9b204cbae213a6645bf33, type: 3}
+  prefab: {fileID: 0}
