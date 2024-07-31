@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: PiggyBank
   description: After 10 hits, crack itself and give you 25 points
-  cost: 4
+  cost: 2
   prefab: {fileID: 1727878499778772336, guid: ceda70d89b8365348bd0b93600422c71, type: 3}

@@ -15,5 +15,5 @@ MonoBehaviour:
   title: Slime
   description: Give you 1 score when you complete a ball throw, Whenever three balls
     are eatten, give two more points
-  cost: 5
+  cost: 2
   prefab: {fileID: 8087328164946523369, guid: 508a969b6062032448fbd1ca2bda5eb0, type: 3}

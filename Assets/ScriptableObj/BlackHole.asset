@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: BlackHole
   description: Attract nearby balls, after eating a ball EMO +2
-  cost: 4
+  cost: 3
   prefab: {fileID: 1420554946172663494, guid: 31dbbeb00bc9b204cbae213a6645bf33, type: 3}

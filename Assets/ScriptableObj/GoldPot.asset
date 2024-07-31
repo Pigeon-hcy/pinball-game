@@ -16,4 +16,4 @@ MonoBehaviour:
   description: After eatting 2 balls, give you a gold ball. When gold ball touches
     bounciable things +4 score
   cost: 4
-  prefab: {fileID: 0}
+  prefab: {fileID: 9162500252831339663, guid: f6e4bd9f71842424687213f73ea2190f, type: 3}
