@@ -24,7 +24,6 @@ public class Pizza : MonoBehaviour, IInteractable
         onHitFeedBack.PlayFeedbacks();
         
             pizzaLeft -= 1;
-            animator.SetInteger("PizzaLeft", pizzaLeft);
             firePizza();
             
         
@@ -37,6 +36,7 @@ public class Pizza : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
+
         if (pizzaLeft == 0)
         {
             Ccollider2D.enabled = false;
@@ -44,6 +44,7 @@ public class Pizza : MonoBehaviour, IInteractable
         else
         {
             Ccollider2D.enabled = true;
+            animator.SetInteger("PizzaLeft", pizzaLeft);
         }
         
     }
