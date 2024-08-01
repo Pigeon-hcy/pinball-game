@@ -27,7 +27,10 @@ public class ShopManger : MonoBehaviour
         LoadPannels();
     }
 
-   
+    private void Update()
+    {
+        coinUI.text = "Coins: " + coins.ToString();
+    }
 
     public void CheckPurchaseable()
     {

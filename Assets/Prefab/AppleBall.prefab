@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1158522174069827754}
   - component: {fileID: 6008851208326038481}
   - component: {fileID: 8917599250140239791}
-  - component: {fileID: 1124110792599933734}
   - component: {fileID: 1677364112263026669}
   - component: {fileID: 5896627121056627088}
+  - component: {fileID: 2660001597487384795}
   m_Layer: 6
   m_Name: AppleBall
   m_TagString: Ball
@@ -115,8 +115,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &1124110792599933734
-CircleCollider2D:
+--- !u!114 &1677364112263026669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788172420137266367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 907eba602e67e7f47a571c6d4f14874f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballrb: {fileID: 8917599250140239791}
+  ballT: {fileID: 1158522174069827754}
+--- !u!114 &5896627121056627088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788172420137266367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12fa6b36a5f5641c6854ab89caf452db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShopManger: {fileID: 0}
+--- !u!60 &2660001597487384795
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,32 +175,30 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &1677364112263026669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2788172420137266367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 907eba602e67e7f47a571c6d4f14874f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballrb: {fileID: 8917599250140239791}
-  ballT: {fileID: 1158522174069827754}
---- !u!114 &5896627121056627088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2788172420137266367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12fa6b36a5f5641c6854ab89caf452db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShopManger: {fileID: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.85999995, y: 0.48}
+      - {x: 0.74, y: 0.58}
+      - {x: 0.44, y: 0.7}
+      - {x: 0.17999999, y: 0.97999996}
+      - {x: 0.08, y: 0.97999996}
+      - {x: -0.19999999, y: 0.58}
+      - {x: -0.45999998, y: 0.59999996}
+      - {x: -0.76, y: 0.34}
+      - {x: -0.76, y: -0.29999998}
+      - {x: -0.68, y: -0.5}
+      - {x: -0.52, y: -0.74}
+      - {x: -0.35999998, y: -0.78}
+      - {x: 0.48, y: -0.78}
+      - {x: 0.74, y: -0.56}
+      - {x: 0.85999995, y: -0.29999998}
+  m_UseDelaunayMesh: 0
