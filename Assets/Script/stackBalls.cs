@@ -11,7 +11,7 @@ public class stackBalls : MonoBehaviour, IInteractable
 
     public void InteractWith()
     {
-        Debug.Log("ball");
+        
         change();
     }
     public void change()

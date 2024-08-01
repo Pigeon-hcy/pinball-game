@@ -16,8 +16,8 @@ public class throwBall : MonoBehaviour
     public Transform[] points;
     private int i;
 
-    public delegate void TurnEndAction();
-    public static TurnEndAction OnTurnEnd;
+    //public delegate void TurnEndAction();
+    //public static TurnEndAction OnTurnEnd;
 
 
     private void Awake()
@@ -69,11 +69,11 @@ public class throwBall : MonoBehaviour
             yield return new WaitForSeconds(1);
 
         }
-        if (OnTurnEnd != null)
-        {
-            OnTurnEnd();
-        }
-        
+        //if (OnTurnEnd != null)
+        //{
+        //    OnTurnEnd();
+        //}
+
         throwDone = true;
         
     }

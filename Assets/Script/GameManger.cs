@@ -21,10 +21,17 @@ public class GameManger : MonoBehaviour
     
     public GameObject[] ballList;
 
+    public bool isalreadyTurnEnd;
+
+    public delegate void TurnEndAction();
+    public static TurnEndAction OnTurnEnd;
+
+
     private void Start()
     {
         tryTime = tryTimeMax;
         Emotion = startEmotion;
+        
     }
 
     private void Update()
@@ -38,10 +45,23 @@ public class GameManger : MonoBehaviour
         if (ballList.Length == 0)
         {
             ballExist = false;
+
+            if (!isalreadyTurnEnd)
+            {
+                if (OnTurnEnd != null)
+                {
+                    OnTurnEnd();
+                }
+
+
+                isalreadyTurnEnd = true;
+            }
         }
         else if((ballList.Length != 0))
         { 
             ballExist = true;
+
+            isalreadyTurnEnd = false;
         }
     }
 

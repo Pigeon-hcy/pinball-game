@@ -42,12 +42,12 @@ public class Slime : MonoBehaviour,  IInteractable
 
     void OnEnable() 
     {
-        throwBall.OnTurnEnd += addMoney;
+        GameManger.OnTurnEnd += addMoney;
     }
 
     void OnDisable()
     { 
-        throwBall.OnTurnEnd -= addMoney;
+        GameManger.OnTurnEnd -= addMoney;
     }
 
     void addMoney()

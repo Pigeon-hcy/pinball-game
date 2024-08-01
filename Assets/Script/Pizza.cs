@@ -51,12 +51,12 @@ public class Pizza : MonoBehaviour, IInteractable
 
     void OnEnable()
     {
-        throwBall.OnTurnEnd += growPizza;
+        GameManger.OnTurnEnd += growPizza;
     }
 
     void OnDisable()
     {
-        throwBall.OnTurnEnd -= growPizza;
+        GameManger.OnTurnEnd -= growPizza;
     }
 
     void growPizza()
