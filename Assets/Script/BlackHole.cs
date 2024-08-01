@@ -1,6 +1,7 @@
 using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
@@ -10,15 +11,29 @@ public class BlackHole : MonoBehaviour, IInteractable
     public GameObject EParticle;
     public GameManger GameManger;
     public MMF_Player OnHitFeedBack;
+    public GameObject BlackHoleForceField;
+    public PhaseManger PhaseManger;
     private void Awake()
     {
         GameManger = GameObject.FindGameObjectWithTag("GameManger").GetComponent<GameManger>();
+        PhaseManger = GameObject.FindGameObjectWithTag("PhaseManger").GetComponent <PhaseManger>();
     }
 
     public void InteractWith()
     {
         OnHitFeedBack.PlayFeedbacks();
         StartCoroutine(AddEmo());
+    }
+
+    public void Update()
+    {
+        if (PhaseManger.turnEnd == true)
+        {
+            BlackHoleForceField.SetActive(true);
+        }
+        else { 
+            BlackHoleForceField.SetActive(false);
+        }
     }
 
     IEnumerator AddEmo()

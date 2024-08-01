@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3648074693341517296
 Transform:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3.07
 --- !u!1 &1420554946172663494
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +250,7 @@ CircleCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 1
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0408206, y: 0.054122806}
   serializedVersion: 2
@@ -270,6 +270,8 @@ MonoBehaviour:
   EParticle: {fileID: 7163979553524316108, guid: 5b2c08518238019448bbb2dcd26659bb, type: 3}
   GameManger: {fileID: 0}
   OnHitFeedBack: {fileID: 6759414552081031546}
+  BlackHoleForceField: {fileID: 118452472532851900}
+  PhaseManger: {fileID: 0}
 --- !u!1 &4949856513882935834
 GameObject:
   m_ObjectHideFlags: 0
