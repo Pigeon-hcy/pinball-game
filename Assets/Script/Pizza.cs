@@ -41,7 +41,10 @@ public class Pizza : MonoBehaviour, IInteractable
         {
             Ccollider2D.enabled = false;
         }
-
+        else
+        {
+            Ccollider2D.enabled = true;
+        }
         
     }
 
