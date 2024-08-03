@@ -39,12 +39,12 @@ public class ShopManger : MonoBehaviour
             if (coins >= prize[i] && alreadyBuy[i] == false)
             {
                 buyButton[i].interactable = true;
-                Debug.Log("able");
+                
             }
             else
             {
                 buyButton[i].interactable = false;
-                Debug.Log("disable");
+               
             }
         }
     }
