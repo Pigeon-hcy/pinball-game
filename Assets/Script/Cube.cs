@@ -25,13 +25,7 @@ public class Cube : MonoBehaviour, IInteractable
             AudioSource.Play();
             OnHitFeedBack.PlayFeedbacks();
             
-            
-        if (canIntercat)
-        {
-            canIntercat = false;
-            cooldownRemaining = cooldown;
-            StartCoroutine(AddEmo());
-        }
+
         
     }
 

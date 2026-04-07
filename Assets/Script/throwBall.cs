@@ -5,76 +5,75 @@ using UnityEngine;
 public class throwBall : MonoBehaviour
 {
     public GameObject ball;
-    public GameObject errorMessage;
-    public Rigidbody2D rb;
-    public GameManger GameManger;
-    public PhaseManger PhaseManger;
+    public GameManagerNew GameManagerNew;
+
+    [Header("Movement (A <-> B)")]
+    public Transform pointA;
+    public Transform pointB;
+    public float moveSpeed = 3f;
+
+    [Header("Throwing")]
     public bool throwDone;
+    public float secondsPerBall = 0.5f;
 
-    public float speed;
-    public int startingPoint;
-    public Transform[] points;
-    private int i;
-
-    //public delegate void TurnEndAction();
-    //public static TurnEndAction OnTurnEnd;
-
-
-    private void Awake()
-    {
-        PhaseManger = GameObject.FindGameObjectWithTag("PhaseManger").GetComponent<PhaseManger>();
-    }
+    private float _t;
+    private Coroutine _throwLoop;
 
     private void Start()
     {
-        transform.position = points[startingPoint].position;
+        if (GameManagerNew == null)
+        {
+            GameManagerNew = FindFirstObjectByType<GameManagerNew>();
+        }
+
+        if (pointA != null)
+        {
+            transform.position = pointA.position;
+        }
+
+        _throwLoop = StartCoroutine(ThrowLoop());
     }
 
     private void Update()
     {
-        if (Vector2.Distance(transform.position, points[i].position) < 0.02f)
+        if (pointA == null || pointB == null) return;
+
+        float distance = Vector3.Distance(pointA.position, pointB.position);
+        if (distance <= 0.0001f) return;
+
+        _t += (moveSpeed / distance) * Time.deltaTime;
+        float pingPong = Mathf.PingPong(_t, 1f);
+        transform.position = Vector3.Lerp(pointA.position, pointB.position, pingPong);
+    }
+
+    private IEnumerator ThrowLoop()
+    {
+        while (true)
         {
-            i++;
-            if (i == points.Length)
-            { 
-                i =0;
+            float cooldown = GameManagerNew != null ? GameManagerNew.BallCooldownMax : 0f;
+            int amount = GameManagerNew != null ? GameManagerNew.BallAmountMax : 0;
+
+            if (cooldown > 0f)
+            {
+                yield return new WaitForSeconds(cooldown);
             }
+            else
+            {
+                yield return null;
+            }
+
+            if (ball == null || amount <= 0)
+            {
+                continue;
+            }
+
+            throwDone = false;
+            for (int i = 0; i < amount; i++)
+            {
+                Instantiate(ball, transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(secondsPerBall);
+            }
+            throwDone = true;
         }
-
-        transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
-    }
-
-    public void startThrowBall()
-    {
-        if (PhaseManger.turnStart == true && GameManger.noNearBlock == false)
-        {
-            StartCoroutine(throwNumberBall(GameManger.Emotion));
-        }else if (GameManger.noNearBlock == true) 
-        {
-            errorMessage.SetActive(true);
-            errorMessage.gameObject.GetComponent<lifeTime>().LifeTime = 1000;
-        }
-         
-    }
-
-    IEnumerator throwNumberBall(int Emotion)
-    {
-        
-        throwDone = false;
-        PhaseManger.changePhase(2);
-        GameManger.tryTime--;
-        for (int i = 0; i < Emotion; i++)
-        {
-            Instantiate(ball, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(1);
-
-        }
-        //if (OnTurnEnd != null)
-        //{
-        //    OnTurnEnd();
-        //}
-
-        throwDone = true;
-        
     }
 }
