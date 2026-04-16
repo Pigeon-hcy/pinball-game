@@ -16,12 +16,14 @@ public class Pepsi : MonoBehaviour, IInteractable
     public bool BurstisOn;
     public int BurstTime;
     public int currentBurstTime;
-    public GameManger GameManger;
+
     public TMP_Text Tmp;
+
+    public GameManagerNew GameManagerNew;
 
     private void Awake()
     {
-        GameManger = GameObject.FindGameObjectWithTag("GameManger").GetComponent<GameManger>();
+        GameManagerNew = FindFirstObjectByType<GameManagerNew>();
         currentBurstRequire = burstRequire;
     }
 
@@ -65,7 +67,7 @@ public class Pepsi : MonoBehaviour, IInteractable
             currentBurstTime = BurstTime;
             onBurstFeedBack.PlayFeedbacks();
             currentBurstRequire = burstRequire;
-            StartCoroutine(AddEmo());
+            GameManagerNew.money += 200;
         }
         else
         {
@@ -83,6 +85,6 @@ public class Pepsi : MonoBehaviour, IInteractable
             yield return new WaitForSeconds(0.1f);
         }
         yield return new WaitForSeconds(1);
-        GameManger.Emotion += 4;
+
     }
 }

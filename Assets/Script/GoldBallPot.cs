@@ -44,10 +44,14 @@ public class GoldBallPot : MonoBehaviour, IInteractable
     void fireGoldBall()
     {
         onBrustFeedBack.PlayFeedbacks();
-        FirePlace.rotation = Quaternion.Euler(0.0f, 0.0f, UnityEngine.Random.Range(-30f, 30f));
-        GameObject ball = Instantiate(GoldBall, FirePlace.position, FirePlace.rotation);
-        Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-        rb.AddForce(FirePlace.up * force, ForceMode2D.Impulse);
+        const int ballCount = 6;
+        for (int i = 0; i < ballCount; i++)
+        {
+            FirePlace.rotation = Quaternion.Euler(0.0f, 0.0f, UnityEngine.Random.Range(-30f, 30f));
+            GameObject ball = Instantiate(GoldBall, FirePlace.position, FirePlace.rotation);
+            Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+            rb.AddForce(FirePlace.up * force, ForceMode2D.Impulse);
+        }
     }
 
 

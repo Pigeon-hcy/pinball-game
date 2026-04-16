@@ -1,12 +1,11 @@
 using MoreMountains.Feedbacks;
-using MoreMountains.Tools;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Pizza : MonoBehaviour, IInteractable
 {
-    public bool canInteract => throw new System.NotImplementedException();
+    public bool canInteract => pizzaLeft > 0 && Time.time >= _nextInteractAllowedTime;
+
     public Animator animator;
     public MMF_Player onHitFeedBack;
     public MMF_Player onGrowFeedBack;
@@ -14,29 +13,37 @@ public class Pizza : MonoBehaviour, IInteractable
     public CircleCollider2D Ccollider2D;
 
     public GameObject PizzaSlice;
-    public Transform FirePlace;
-    public Transform FirePlace2;
     public float force;
 
-   
+    [Tooltip("Seconds after the last slice before pizza refills to 8.")]
+    public float refillDelaySeconds = 5f;
+
+    [Tooltip("Minimum time between two slice throws.")]
+    public float interactCooldownSeconds = 0.35f;
+
+    private float _nextInteractAllowedTime;
+    private Coroutine _recoverRoutine;
+
     public void InteractWith()
     {
+        if (pizzaLeft <= 0) return;
+        if (Time.time < _nextInteractAllowedTime) return;
+
         onHitFeedBack.PlayFeedbacks();
-        
-            pizzaLeft -= 1;
-            firePizza();
-            
-        
-        
+
+        pizzaLeft -= 1;
+        FirePizza();
+
+        _nextInteractAllowedTime = Time.time + interactCooldownSeconds;
+
+        if (pizzaLeft == 0 && _recoverRoutine == null)
+        {
+            _recoverRoutine = StartCoroutine(RecoverAfterDelay());
+        }
     }
 
-    
-    
-
-    // Update is called once per frame
     void Update()
     {
-
         if (pizzaLeft == 0)
         {
             Ccollider2D.enabled = false;
@@ -46,42 +53,28 @@ public class Pizza : MonoBehaviour, IInteractable
             Ccollider2D.enabled = true;
             animator.SetInteger("PizzaLeft", pizzaLeft);
         }
-        
     }
 
-    void OnEnable()
+    private IEnumerator RecoverAfterDelay()
     {
-        GameManger.OnTurnEnd += growPizza;
-    }
+        yield return new WaitForSeconds(refillDelaySeconds);
 
-    void OnDisable()
-    {
-        GameManger.OnTurnEnd -= growPizza;
-    }
-
-    void growPizza()
-    {
         onGrowFeedBack.PlayFeedbacks();
         pizzaLeft = 8;
+        animator.SetInteger("PizzaLeft", pizzaLeft);
+        _recoverRoutine = null;
     }
 
-
-    void firePizza()
+    private void FirePizza()
     {
-        if (pizzaLeft >= 4)
-        {
-            FirePlace.rotation = Quaternion.Euler(0.0f, 0.0f, UnityEngine.Random.Range(-10f, -30f));
-            GameObject ball = Instantiate(PizzaSlice, FirePlace.position, FirePlace.rotation);
-            Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-            rb.AddForce(FirePlace.up * force, ForceMode2D.Impulse);
-        }
-        else {
-            FirePlace2.rotation = Quaternion.Euler(0.0f, 0.0f, UnityEngine.Random.Range(10f, 30f));
-            GameObject ball = Instantiate(PizzaSlice, FirePlace2.position, FirePlace2.rotation);
-            Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-            rb.AddForce(FirePlace2.up * force, ForceMode2D.Impulse);
-        }
-        
+        // After decrement: 1st slice -> pizzaLeft 7 -> index 1 -> 45°; 2nd -> 90°; ... 8th -> 360°
+        int sliceIndex = 8 - pizzaLeft;
+        float angleDeg = 45f * sliceIndex;
+        Quaternion rot = Quaternion.Euler(0f, 0f, angleDeg);
+        Vector2 dir = rot * Vector2.up;
 
+        GameObject slice = Instantiate(PizzaSlice, transform.position, rot);
+        Rigidbody2D rb = slice.GetComponent<Rigidbody2D>();
+        rb.AddForce(dir * force, ForceMode2D.Impulse);
     }
 }

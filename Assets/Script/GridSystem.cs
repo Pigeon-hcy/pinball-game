@@ -135,6 +135,32 @@ public class GridSystem : MonoBehaviour
         return origin + new Vector3(x * cellSize, y * cellSize, 0f);
     }
 
+    /// <summary>Maps a world point to the nearest cell index. Returns false if outside the grid.</summary>
+    public bool TryWorldToCell(Vector3 worldPosition, out int x, out int y)
+    {
+        Vector3 origin = GetGridOriginWorld();
+        x = Mathf.RoundToInt((worldPosition.x - origin.x) / cellSize);
+        y = Mathf.RoundToInt((worldPosition.y - origin.y) / cellSize);
+        return x >= 0 && x < width && y >= 0 && y < height;
+    }
+
+    /// <summary>Spawns <paramref name="prefab"/> at cell (x,y), destroying any existing occupant.</summary>
+    public void PlaceOrReplaceInCell(int x, int y, GameObject prefab)
+    {
+        if (prefab == null) return;
+        if (x < 0 || x >= width || y < 0 || y >= height) return;
+
+        if (grid[x, y] != null)
+        {
+            Destroy(grid[x, y]);
+            grid[x, y] = null;
+        }
+
+        Vector3 pos = GetCellCenterWorld(x, y);
+        GameObject go = Instantiate(prefab, pos, prefab.transform.rotation, transform);
+        grid[x, y] = go;
+    }
+
     public Vector3 GetGridOriginWorld()
     {
         float halfWidth = (width - 1) * 0.5f * cellSize;
