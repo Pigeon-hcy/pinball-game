@@ -14,21 +14,31 @@ public class Slime : MonoBehaviour,  IInteractable
     public MMF_Player OnHitFeedBack;
     public MMF_Player OnUpgradeFeedBack;
     public MMF_Player OnTurnEndFeedBakck;
-    public GameManger GameManger;
+    public GameManagerNew GameManagerNew;
     public GameObject MParticle;
     public TextMeshPro TMP;
+
+    public float turnLastTime = 10f;
+    public float currentTurnLastTime = 0f;
     private void Awake()
     {
-        GameManger = GameObject.FindGameObjectWithTag("GameManger").GetComponent<GameManger>();
+        GameManagerNew = FindFirstObjectByType<GameManagerNew>();
     }
 
     private void Update()
     {
-        if (requiredBall == currentBall) 
+        if (requiredBall <= currentBall) 
         {
             currentBall = 0;
             turnEndMoney += 2;
             OnUpgradeFeedBack.PlayFeedbacks();
+        }
+
+        currentTurnLastTime += Time.deltaTime;
+        if (currentTurnLastTime >= turnLastTime)
+        {
+            currentTurnLastTime = 0f;
+            addMoney();
         }
 
         TMP.text = currentBall.ToString() + "/3";
@@ -40,30 +50,10 @@ public class Slime : MonoBehaviour,  IInteractable
         OnHitFeedBack.PlayFeedbacks();
     }
 
-    void OnEnable() 
-    {
-        GameManger.OnTurnEnd += addMoney;
-    }
-
-    void OnDisable()
-    { 
-        GameManger.OnTurnEnd -= addMoney;
-    }
 
     void addMoney()
     {
         OnTurnEndFeedBakck.PlayFeedbacks();
-        StartCoroutine(AddEmo(turnEndMoney));
-    }
-
-    IEnumerator AddEmo(int turnEndMoney)
-    {
-        for (int i = 0; i < turnEndMoney; i++)
-        {
-            Instantiate(MParticle, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(0.1f);
-        }
-        yield return new WaitForSeconds(1);
-        GameManger.Score += turnEndMoney;
+        GameManagerNew.money += turnEndMoney;
     }
 }

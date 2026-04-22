@@ -5,6 +5,7 @@ using UnityEngine;
 public class throwBall : MonoBehaviour
 {
     public GameObject ball;
+    public Color[] colors;
     public GameManagerNew GameManagerNew;
 
     [Header("Movement (A <-> B)")]
@@ -70,7 +71,17 @@ public class throwBall : MonoBehaviour
             throwDone = false;
             for (int i = 0; i < amount; i++)
             {
-                Instantiate(ball, transform.position, Quaternion.identity);
+                GameObject spawned = Instantiate(ball, transform.position, Quaternion.identity);
+
+                if (spawned != null)
+                {
+                    SpriteRenderer sr = spawned.GetComponent<SpriteRenderer>();
+                    if (sr != null && colors != null && colors.Length > 0 && GameManagerNew != null)
+                    {
+                        int colorIndex = Mathf.Clamp(GameManagerNew.ballLevel, 0, colors.Length - 1);
+                        sr.color = colors[colorIndex];
+                    }
+                }
                 yield return new WaitForSeconds(secondsPerBall);
             }
             throwDone = true;
