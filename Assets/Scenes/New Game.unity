@@ -314,13 +314,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 0
   BallCooldownMax: 5
-  BallCooldownCost: 10
+  BallCooldownCost: 5
   BallAmountMax: 1
-  BallAmountCost: 200
+  BallAmountCost: 10
   BallValue: 1
-  BallValueCost: 500
+  BallValueCost: 50
   pitMultiplier: 0
-  pitMultiplierCost: 1000
+  pitMultiplierCost: 100
   moneyText: {fileID: 656466638}
   ballLevel: 0
   pitLevel: 0
@@ -328,13 +328,13 @@ MonoBehaviour:
   PitMax: 0
   GridSystem: {fileID: 0}
   GoldPit: {fileID: 9162500252831339663, guid: f6e4bd9f71842424687213f73ea2190f, type: 3}
-  GoldPitSelectCost: 100
+  GoldPitSelectCost: 200
   PizzaBlock: {fileID: 5064028382651380209, guid: 32c826a2f2a854a498d536f38384f703, type: 3}
-  PizzaSelectCost: 50
+  PizzaSelectCost: 150
   PepsiBlock: {fileID: 546805177275147241, guid: ef255d1f0497ee74db56dcb38777391a, type: 3}
-  PepsiSelectCost: 150
+  PepsiSelectCost: 50
   SlimeBlock: {fileID: 8087328164946523369, guid: 508a969b6062032448fbd1ca2bda5eb0, type: 3}
-  SlimeSelectCost: 75
+  SlimeSelectCost: 15
   upgradeBallCooldownButton: {fileID: 1404655654}
   upgradeBallAmountButton: {fileID: 1748032431}
   upgradeBallValueButton: {fileID: 406487145}

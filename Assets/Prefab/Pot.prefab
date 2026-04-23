@@ -5383,7 +5383,7 @@ MonoBehaviour:
   GoldBall: {fileID: 6460232487337573776, guid: 803dd2d52741eb5499d6b4d1caf66d41, type: 3}
   FirePlace: {fileID: 586020610189361994}
   force: 19.2
-  ballNeed: 2
+  ballNeed: 3
   currentBall: 0
   onHitFeedBack: {fileID: 3322703661834532969}
   onBrustFeedBack: {fileID: 4653907193983897442}

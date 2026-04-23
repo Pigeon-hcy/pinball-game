@@ -44,7 +44,7 @@ public class GoldBallPot : MonoBehaviour, IInteractable
     void fireGoldBall()
     {
         onBrustFeedBack.PlayFeedbacks();
-        const int ballCount = 6;
+        const int ballCount = Random.Range(1, 4);
         for (int i = 0; i < ballCount; i++)
         {
             FirePlace.rotation = Quaternion.Euler(0.0f, 0.0f, UnityEngine.Random.Range(-30f, 30f));
