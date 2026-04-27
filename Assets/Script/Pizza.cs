@@ -46,6 +46,7 @@ public class Pizza : MonoBehaviour, IInteractable
     {
         if (pizzaLeft == 0)
         {
+            animator.SetInteger("PizzaLeft", 0);
             Ccollider2D.enabled = false;
         }
         else

@@ -78,7 +78,7 @@ public class throwBall : MonoBehaviour
                     SpriteRenderer sr = spawned.GetComponent<SpriteRenderer>();
                     if (sr != null && colors != null && colors.Length > 0 && GameManagerNew != null)
                     {
-                        int colorIndex = Mathf.Clamp(GameManagerNew.ballLevel, 0, colors.Length - 1);
+                        int colorIndex = Mathf.Clamp(GameManagerNew.ballColorLevel, 0, colors.Length - 1);
                         sr.color = colors[colorIndex];
                     }
                 }

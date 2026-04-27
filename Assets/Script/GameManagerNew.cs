@@ -17,14 +17,29 @@ public class GameManagerNew : MonoBehaviour
 
     public TMP_Text moneyText;
 
+    [Header("UI Price Texts (optional)")]
+    public TMP_Text ballCooldownPriceText;
+    public TMP_Text ballAmountPriceText;
+    public TMP_Text ballValuePriceText;
+    public TMP_Text pitUpgradePriceText;
+    public TMP_Text goldPitPriceText;
+    public TMP_Text pizzaPriceText;
+    public TMP_Text pepsiPriceText;
+    public TMP_Text slimePriceText;
+
     private int _ballCooldownPurchases;
 
     private int _ballAmountPurchases;
     private int _ballValuePurchases;
     private int _pitMultiplierPurchases;
 
-    // levels are 0-based and capped at 6
-    public int ballLevel;
+    // Levels are 0-based and capped at ballMax.
+    // Split per-upgrade so cooldown/amount/value don't share one cap.
+    public int ballCooldownLevel;
+    public int ballAmountLevel;
+    public int ballValueLevel;
+    // Visual-only level for ball color. Cooldown upgrades should not affect color.
+    public int ballColorLevel;
     public int pitLevel;
 
     public int ballMax = 6;
@@ -157,18 +172,33 @@ public class GameManagerNew : MonoBehaviour
         bool inSelectMode = IsAnySpecialBlockSelectMode;
 
         // ball upgrades
-        SetButton(upgradeBallCooldownButton, !inSelectMode && ballLevel < 6 && money >= GetUpgradePrice(BallCooldownCost, _ballCooldownPurchases));
-        SetButton(upgradeBallAmountButton, !inSelectMode && ballLevel < 6 && money >= GetUpgradePrice(BallAmountCost, _ballAmountPurchases));
-        SetButton(upgradeBallValueButton, !inSelectMode && ballLevel < 6 && money >= GetUpgradePrice(BallValueCost, _ballValuePurchases));
+        int cooldownPrice = GetUpgradePrice(BallCooldownCost, _ballCooldownPurchases);
+        int amountPrice = GetUpgradePrice(BallAmountCost, _ballAmountPurchases);
+        int valuePrice = GetUpgradePrice(BallValueCost, _ballValuePurchases);
+
+        SetButton(upgradeBallCooldownButton, !inSelectMode && ballCooldownLevel < ballMax && money >= cooldownPrice);
+        SetButton(upgradeBallAmountButton, !inSelectMode && ballAmountLevel < ballMax && money >= amountPrice);
+        SetButton(upgradeBallValueButton, !inSelectMode && ballValueLevel < ballMax && money >= valuePrice);
+
+        SetPriceText(ballCooldownPriceText, ballCooldownLevel >= ballMax, cooldownPrice);
+        SetPriceText(ballAmountPriceText, ballAmountLevel >= ballMax, amountPrice);
+        SetPriceText(ballValuePriceText, ballValueLevel >= ballMax, valuePrice);
 
         // pit upgrade
-        SetButton(upgradePitButton, !inSelectMode && pitLevel < 6 && money >= GetUpgradePrice(pitMultiplierCost, _pitMultiplierPurchases));
+        int pitPrice = GetUpgradePrice(pitMultiplierCost, _pitMultiplierPurchases);
+        SetButton(upgradePitButton, !inSelectMode && pitLevel < PitMax && money >= pitPrice);
+        SetPriceText(pitUpgradePriceText, pitLevel >= PitMax, pitPrice);
 
         // placement buttons (flat cost)
         SetButton(placeGoldPitButton, !inSelectMode && GoldPit != null && GridSystem != null && money >= GoldPitSelectCost);
         SetButton(placePizzaButton, !inSelectMode && PizzaBlock != null && GridSystem != null && money >= PizzaSelectCost);
         SetButton(placePepsiButton, !inSelectMode && PepsiBlock != null && GridSystem != null && money >= PepsiSelectCost);
         SetButton(placeSlimeButton, !inSelectMode && SlimeBlock != null && GridSystem != null && money >= SlimeSelectCost);
+
+        SetPriceText(goldPitPriceText, false, GoldPitSelectCost);
+        SetPriceText(pizzaPriceText, false, PizzaSelectCost);
+        SetPriceText(pepsiPriceText, false, PepsiSelectCost);
+        SetPriceText(slimePriceText, false, SlimeSelectCost);
     }
 
     private static void SetButton(Button button, bool interactable)
@@ -177,9 +207,15 @@ public class GameManagerNew : MonoBehaviour
         button.interactable = interactable;
     }
 
+    private static void SetPriceText(TMP_Text text, bool isMax, int price)
+    {
+        if (text == null) return;
+        text.text = isMax ? "MAX" : "prize: " + price.ToString();
+    }
+
     public void UpgradeBallCooldown()
     {
-        if (ballLevel >= 6) return;
+        if (ballCooldownLevel >= ballMax) return;
 
         int cost = GetUpgradePrice(BallCooldownCost, _ballCooldownPurchases);
         if (money < cost) return;
@@ -187,13 +223,13 @@ public class GameManagerNew : MonoBehaviour
         money -= cost;
         _ballCooldownPurchases++;
         BallCooldownMax = Mathf.Max(0f, BallCooldownMax * 0.9f);
-        ballLevel = Mathf.Min(6, ballLevel + 1);
+        ballCooldownLevel = Mathf.Min(ballMax, ballCooldownLevel + 1);
         RefreshMoneyText();
     }
 
     public void UpgradeBallAmount()
     {
-        if (ballLevel >= 6) return;
+        if (ballAmountLevel >= ballMax) return;
 
         int cost = GetUpgradePrice(BallAmountCost, _ballAmountPurchases);
         if (money < cost) return;
@@ -201,13 +237,14 @@ public class GameManagerNew : MonoBehaviour
         money -= cost;
         _ballAmountPurchases++;
         BallAmountMax++;
-        ballLevel = Mathf.Min(6, ballLevel + 1);
+        ballAmountLevel = Mathf.Min(ballMax, ballAmountLevel + 1);
+        ballColorLevel = Mathf.Min(ballMax, ballColorLevel + 1);
         RefreshMoneyText();
     }
 
     public void UpgradeBallValue()
     {
-        if (ballLevel >= 6) return;
+        if (ballValueLevel >= ballMax) return;
 
         int cost = GetUpgradePrice(BallValueCost, _ballValuePurchases);
         if (money < cost) return;
@@ -215,7 +252,8 @@ public class GameManagerNew : MonoBehaviour
         money -= cost;
         _ballValuePurchases++;
         BallValue++;
-        ballLevel = Mathf.Min(6, ballLevel + 1);
+        ballValueLevel = Mathf.Min(ballMax, ballValueLevel + 1);
+        ballColorLevel = Mathf.Min(ballMax, ballColorLevel + 1);
         RefreshMoneyText();
     }
 
